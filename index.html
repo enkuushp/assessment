@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <title>Motivational Speakers, LLC</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet" />
+      <link rel="stylesheet" type="text/css" media="all" href="assets/css/globals.css" />
+      <link rel="stylesheet" type="text/css" media="all" href="assets/css/forms.css" />
+      <link rel="stylesheet" type="text/css" media="all" href="assets/css/style.css" />
+      <script type="text/javascript" src="assets/js/jquery-3.6.1.min.js"></script>
+      <script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="assets/js/script.js"></script>
+   </head>
+   <body>
+      <header class="site-header">
+         <div class="container flex">
+            <div class="logo">
+               <a href="#"><img src="assets/images/logo.svg" width="218" height="42" alt="" /></a>
+            </div>
+            <nav class="site-nav">
+               <ul>
+                  <li><a class="current" href="/">Home</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Company</a></li>
+                  <li><a href="#">Get in Touch</a></li>
+               </ul>
+            </nav>
+
+            <a class="mobile-menu">
+               <span></span>
+               <span></span>
+               <span></span>
+            </a>
+         </div>
+      </header>
+      <div class="site-content">
+         <div class="container">
+            <div class="hero">
+               <div class="hero-content flex-col">
+                  <h1 class="title">Find the right event for <span class="color-primary">you</span></h1>
+                  <div class="description">
+                     <p>
+                        From weddings to birthdays and all in between, the world needs speakers like you. And not just any speaker - really good ones.
+                        If you think you've got the strongest, most confident voice in the room, use it to broadcast a message that people want to
+                        hear.
+                     </p>
+                     <p><strong>Yeah, we didn't think it could get any better either</strong></p>
+                  </div>
+                  <div class="hero-cta">
+                     <a href="#" class="button button-primary"><i class="icon icon-location"></i> Find an Event</a>
+                     <a href="#" class="button button-transparent"><i class="icon icon-phone"></i> Get in Touch</a>
+                  </div>
+               </div>
+               <div class="hero-image flex-col">
+                  <img src="assets/images/top-graphic.png" />
+               </div>
+            </div>
+         </div>
+         <section class="events">
+            <div class="container">
+               <h2 class="title">Events for <span class="color-primary">every occasion</span></h2>
+               <div class="events-content">
+                  <div class="events-lists">
+                     <div class="col">
+                        <div class="detail">
+                           <div class="image">
+                              <img src="/assets/images/event-1.png" alt="" />
+                              <div class="person"><i class="icon icon-user"></i> Jane Doe - 30 mins</div>
+                           </div>
+                           <div class="info">
+                              <h3>Apple Keynote</h3>
+                              <div class="date">Nov 20, 2022 - Coolray Field</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col">
+                        <div class="detail">
+                           <div class="image">
+                              <img src="/assets/images/event-2.png" alt="" />
+                              <div class="person"><i class="icon icon-user"></i> Eric Chan - 2 hrs</div>
+                           </div>
+                           <div class="info">
+                              <h3>Lorem Ipsum is simply dummy text of the printing</h3>
+                              <div class="date">Nov 29, 2022 - San Francisco Symphony Orchestra</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col">
+                        <div class="detail">
+                           <div class="image">
+                              <img src="/assets/images/event-1.png" alt="" />
+                              <div class="person"><i class="icon icon-user"></i> Jane Doe - 30 mins</div>
+                           </div>
+                           <div class="info">
+                              <h3>Apple Keynote</h3>
+                              <div class="date">Nov 20, 2022 - Coolray Field</div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col">
+                        <div class="detail">
+                           <div class="image">
+                              <img src="/assets/images/event-2.png" alt="" />
+                              <div class="person"><i class="icon icon-user"></i> Eric Chan - 2 hrs</div>
+                           </div>
+                           <div class="info">
+                              <h3>Lorem Ipsum is simply dummy text of the printing</h3>
+                              <div class="date">Nov 29, 2022 - San Francisco Symphony Orchestra</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="events-filter flex-col">
+                     <div class="filters">
+                        <div class="form-field">
+                           <div class="tabs">
+                              <a class="tab active"><span>In the future</span></a>
+                              <a class="tab"><span>In the Past</span></a>
+                           </div>
+                        </div>
+                        <div class="form-field">
+                           <div class="flex flex-align-center">
+                              <i class="icon icon-search"></i>
+                              <input type="text" class="text" placeholder="Search by name or location" />
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="">Event Location</label>
+                           <select id="event-location"></select>
+                        </div>
+                        <div class="form-group">
+                           <label for="">Event Length</label>
+                           <select id="event-duration">
+                              <option value="30">30 mins</option>
+                              <option value="60">60 mins</option>
+                              <option value="90">90 mins</option>
+                              <option value="120">2 hours</option>
+                           </select>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="">Seat Cost</label>
+                           <div class="form-field flex-col">
+                              <div class="flex flex-align-center">
+                                 <i class="icon icon-money"></i>
+                                 <input type="number" class="text" placeholder="Min" />
+                              </div>
+                           </div>
+                           <div class="spacer">to</div>
+                           <div class="form-field flex-col">
+                              <div class="flex flex-align-center">
+                                 <i class="icon icon-money"></i>
+                                 <input type="number" class="text" placeholder="Max" />
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="">Event Size</label>
+                        </div>
+                        <div id="form-range"></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <footer class="site-footer">
+            <div class="container">Copyright &copy; Motivational Speakers, LLC. All Rights Reserved.</div>
+         </footer>
+      </div>
+   </body>
+</html>
