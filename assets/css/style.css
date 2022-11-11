@@ -255,6 +255,22 @@
   margin: 0 -1rem;
 }
 
+.events .events-lists .more {
+  width: 100%;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.events .events-lists .more a {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.events .events-lists .more a:hover {
+  color: var(--color-secondary);
+}
+
 .events .events-lists .col {
   flex: 0 0 auto;
   width: 50%;

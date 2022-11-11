@@ -171,6 +171,8 @@ function filterEvents() {
     return ret;
   });
 
+  //filtered_events = filtered_events.slice(0, 6);
+
   filtered_events.forEach((ev) => {
     html += '<div class="col"><div class="detail"><div class="image">';
     html += '<img src="' + ev.image + "?rand=" + ev.id + ' alt="" />';
@@ -194,8 +196,16 @@ function filterEvents() {
     html += "</div></div></div>";
   });
 
+  html += '<div class="more"><a id="load_more">Load More (' + filtered_events.length +')</a></div>'
+
   $(".events-lists").html(html);
 }
+
+$("#load_more").click(function (e) {
+  e.preventDefault();
+  alert('ok');
+  filterEvents();
+});
 
 function getDate(date) {
   var dt = new Date(date);
