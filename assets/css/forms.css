@@ -111,6 +111,7 @@
    height: 2.5rem;
    transform: translate(-50%, -50%);
    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+   touch-action: all;
 }
 
 #form-range .ui-slider-handle::before {
@@ -151,6 +152,7 @@ select {
    width: 55%;
    border: 1px solid var(--color-border);
    background-color: #fff;
+   -webkit-appearance: none;
 }
 
 select option {

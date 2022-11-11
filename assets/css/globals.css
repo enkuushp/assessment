@@ -21,8 +21,6 @@ body {
    font-family: var(--font-family);
    color: var(--color-secondary);
    font-size: 2rem;
-   overflow-x: hidden;
-   width: 100vw;
 }
 
 input {
@@ -113,32 +111,32 @@ img {
 i.icon-location {
    width: 15px;
    height: 20px;
-   background-image: url("/assets/images/location-icon.png");
+   background-image: url("../images/location-icon.png");
 }
 
 i.icon-phone {
    width: 19px;
    height: 19px;
-   background-image: url("/assets/images/phone-icon.png");
+   background-image: url("../images/phone-icon.png");
 }
 
 i.icon-user {
    width: 15px;
    height: 15px;
-   background-image: url("/assets/images/person-icon.png");
+   background-image: url("../images/person-icon.png");
    vertical-align: text-top;
 }
 
 i.icon-search {
    width: 18px;
    height: 18px;
-   background-image: url("/assets/images/search-icon.png");
+   background-image: url("../images/search-icon.png");
    vertical-align: text-top;
 }
 
 i.icon-money {
    width: 19px;
    height: 19px;
-   background-image: url("/assets/images/money-icon.png");
+   background-image: url("../images/money-icon.png");
    vertical-align: text-top;
 }

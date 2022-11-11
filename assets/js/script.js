@@ -16,13 +16,18 @@ var search = "";
 var sizeStart = 50;
 var sizeEnd = 250;
 var sizeMax = 300;
+var isFuture = true;
+var locationId = 0;
+var eventDuration = "";
+var priceMin = 0;
+var priceMax = 200;
 
 function initEventFilter() {
    /* Get Initial Events */
    $.get(url + "locations", function (data) {
       locations = data;
 
-      $("#event-locations").html("");
+      $("#event-location").html('<option value="0">Select Location</option>');
 
       locations.forEach((location) => {
          $("#event-location").append('<option value="' + location.id + '">' + location.city + ", " + location.state + "</option>");
@@ -30,8 +35,64 @@ function initEventFilter() {
 
       $.get(url + "events?sortBy=date&order=desc", function (data) {
          events = data;
-         addEvents();
+         filterEvents();
       });
+   });
+
+   /* Event Search */
+   $("#event-search").keyup(function (e) {
+      e.preventDefault();
+      search = $(this).val();
+
+      filterEvents();
+   });
+
+   /* Tabs */
+   $(".events-filter .tabs .tab").click(function () {
+      $(".events-filter .tabs .tab").removeClass("active");
+      $(this).addClass("active");
+      isFuture = $(this).attr("data-value") == "past" ? false : true;
+
+      filterEvents();
+   });
+
+   /* Location */
+   $("#event-location").change(function (e) {
+      e.preventDefault();
+      locationId = $(this).val();
+
+      filterEvents();
+   });
+
+   /* Duration */
+   $("#event-duration").change(function (e) {
+      e.preventDefault();
+      eventDuration = $(this).val();
+
+      filterEvents();
+   });
+
+   /* Price Min Max */
+   $("#price-min").keyup(function (e) {
+      e.preventDefault();
+      priceMin = $(this).val().toString().replace(/\D/g, "");
+
+      if ($(this).val().toString().length != $(this).val().toString().length) {
+         $(this).val(priceMin);
+      }
+
+      filterEvents();
+   });
+
+   $("#price-max").keyup(function (e) {
+      e.preventDefault();
+      priceMax = $(this).val().toString().replace(/\D/g, "");
+
+      if ($(this).val().toString().length != $(this).val().toString().length) {
+         $(this).val(priceMax);
+      }
+
+      filterEvents();
    });
 
    /* Slider */
@@ -48,33 +109,77 @@ function initEventFilter() {
 
          $("#form-range span:nth-child(2)").attr("data-content", ui.values[0]);
          $("#form-range span:nth-child(3)").attr("data-content", ui.values[1]);
+
+         filterEvents();
       },
    });
 
    $("#form-range span:nth-child(2)").attr("data-content", sizeStart);
    $("#form-range span:nth-child(3)").attr("data-content", sizeEnd);
-
-   /* Tabs */
-   $(".events-filter .tabs .tab").click(function () {
-      $(".events-filter .tabs .tab").removeClass("active");
-      $(this).addClass("active");
-   });
 }
 
-function addEvents() {
+function filterEvents() {
    var html = "";
+   var filtered_events = [];
 
-   events.forEach((ev) => {
-      var dt = new Date(ev.date);
+   var today = new Date();
+
+   filtered_events = events.filter((evnt) => {
+      let evDate = new Date(evnt.date);
+      let ret = true;
+
+      /* By Search */
+      if (search != "" && evnt.name.indexOf(search) == -1) {
+         ret = false;
+      }
+
+      /* By Date */
+      if (isFuture && evDate < today) {
+         ret = false;
+      } else if (!isFuture && evDate > today) {
+         ret = false;
+      }
+
+      /* By Location */
+      if (locationId > 0 && evnt.locationId != locationId) {
+         ret = false;
+      }
+
+      /* By Duration */
+      if (eventDuration != "" && evnt.duration != eventDuration) {
+         ret = false;
+      }
+
+      /* By Price */
+      if (priceMin > evnt.price || priceMax < evnt.price) {
+         ret = false;
+      }
+
+      /* By Size */
+      if (sizeStart > evnt.seats || sizeEnd < evnt.seats) {
+         ret = false;
+      }
+
+      return ret;
+   });
+
+   filtered_events.forEach((ev) => {
       html += '<div class="col"><div class="detail"><div class="image">';
       html += '<img src="' + ev.image + "?rand=" + ev.id + ' alt="" />';
       html += '<div class="person"><i class="icon icon-user"></i> ';
       html += "Jane Doe " + ev.duration + " mins</div></div>";
       html += '<div class="info"><h3>' + ev.name + "</h3>";
-      html += '<div class="date">' + getDate(ev.date) + " - " + locations[0].name + "</div>";
+      html +=
+         '<div class="date">' +
+         getDate(ev.date) +
+         " - " +
+         locations[ev.locationId - 1].name +
+         ", " +
+         locations[ev.locationId - 1].city +
+         ", " +
+         locations[ev.locationId - 1].state +
+         "</div>";
       html += "</div></div></div>";
-
-      console.log(ev.location);
    });
 
    $(".events-lists").html(html);
@@ -83,5 +188,6 @@ function addEvents() {
 function getDate(date) {
    var dt = new Date(date);
    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-   return monthNames[dt.getMonth()] + " " + dt.getDay() + ", " + dt.getFullYear();
+
+   return monthNames[dt.getMonth()] + " " + dt.getDate() + ", " + dt.getFullYear();
 }
