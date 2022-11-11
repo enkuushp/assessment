@@ -187,6 +187,10 @@ function filterEvents() {
       ", " +
       locations[ev.locationId - 1].state +
       "</div>";
+    html +=
+      '<div class="price"><strong>Price:</strong> $' +
+      ev.price.toFixed(2) +
+      "</div>";
     html += "</div></div></div>";
   });
 
