@@ -126,10 +126,9 @@ function initEventFilter() {
   $("#form-range span:nth-child(3)").attr("data-content", sizeEnd);
 }
 
-function filterEvents() {
+function filterEvents(load = false) {
   var html = "";
   var filtered_events = [];
-
   var today = new Date();
 
   filtered_events = events.filter((evnt) => {
@@ -171,7 +170,13 @@ function filterEvents() {
     return ret;
   });
 
-  //filtered_events = filtered_events.slice(0, 6);
+  var eventNum = filtered_events.length;
+  var more = "";
+
+  if (!load && eventNum > 6) {
+    filtered_events = filtered_events.slice(0, 6);
+    more = '<div class="more"><a id="load_more" onClick="loadMore();">Load More (' + eventNum +')</a></div>';
+  }
 
   filtered_events.forEach((ev) => {
     html += '<div class="col"><div class="detail"><div class="image">';
@@ -196,16 +201,14 @@ function filterEvents() {
     html += "</div></div></div>";
   });
 
-  html += '<div class="more"><a id="load_more">Load More (' + filtered_events.length +')</a></div>'
+  html += more;
 
   $(".events-lists").html(html);
 }
 
-$("#load_more").click(function (e) {
-  e.preventDefault();
-  alert('ok');
-  filterEvents();
-});
+function loadMore() {
+  filterEvents(true);
+}
 
 function getDate(date) {
   var dt = new Date(date);
